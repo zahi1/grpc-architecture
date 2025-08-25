@@ -1,0 +1,39 @@
+# .NET build artifacts
+bin/
+obj/
+
+# Visual Studio / VS Code
+.vs/
+.vscode/
+*.user
+*.suo
+*.userprefs
+
+# Rider
+.idea/
+*.sln.iml
+
+# Logs
+*.log
+logs/
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Cache
+**/GeneratedMSBuildEditorConfig.editorconfig
+**/*.cache
+**/*.genruntimeconfig.cache
+**/*.assets.cache
+**/*.BuildWithSkipAnalyzers
+**/*.CoreCompileInputs.cache
+**/*.AssemblyReference.cache
+**/*.FileListAbsolute.txt
+
+# NuGet
+*.nupkg
+*.snupkg
+packages/
+project.lock.json
+.nuget/

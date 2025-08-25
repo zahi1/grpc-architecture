@@ -1,0 +1,42 @@
+// Set syntax version to proto3 for this file
+syntax = "proto3";
+
+// Define the C# namespace for the generated code
+option csharp_namespace = "GasPressure.Grpc";
+
+// Import the Google-provided `Empty` message definition, used for requests that don't require additional parameters
+import "google/protobuf/empty.proto";
+
+// Message defining the state of the gas container
+message GasContainerState {
+    double pressure = 1;                // Current pressure of the gas in the container
+    double temperature = 2;             // Current temperature of the gas
+    double mass = 3;                    // Current mass of the gas in the container
+    bool is_destroyed = 4;              // Indicates if the container is destroyed (true if destroyed)
+}
+
+// Request message for adjusting the mass
+message MassRequest {
+    double amount = 1;                  // Specifies the amount of mass to add or remove
+}
+
+// Response for actions involving mass adjustment
+message MassAdjustmentResponse {
+    bool success = 1;                   // Indicates if the mass adjustment operation was successful
+    string message = 2;                 // Provides a result message for feedback on the operation
+}
+
+// Service for GasContainer management
+service GasContainerService {
+    // Retrieves the current state of the gas container
+    rpc GetContainerState(google.protobuf.Empty) returns (GasContainerState);
+
+    // Adds mass to the gas container (typically used by an InputClient)
+    rpc AddMass(MassRequest) returns (MassAdjustmentResponse);
+
+    // Removes mass from the gas container (typically used by an OutputClient)
+    rpc RemoveMass(MassRequest) returns (MassAdjustmentResponse);
+
+    // Checks if the container is destroyed by retrieving its state
+    rpc IsDestroyed(google.protobuf.Empty) returns (GasContainerState);
+}
